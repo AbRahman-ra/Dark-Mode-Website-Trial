@@ -1,0 +1,63 @@
+.modes {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modeOption {
+  padding: 2% 4%;
+  border-radius: 1em;
+  font-size: 6dvw;
+  border-color: chocolate;
+  transition: border-color 0.5s ease;
+}
+
+.modeOption:hover {
+  cursor: pointer;
+  border: 1dvw solid crimson !important;
+}
+
+/* Light Mode */
+#light {
+  background-color: blanchedalmond;
+  color: black;
+}
+
+div[light="selected"] {
+  border: 1dvw solid crimson !important;
+  border-top-width: 3dvw !important;
+}
+
+div[light="selected"]:hover {
+  border-top-width: 3dvw !important;
+}
+
+/* Dim Mode */
+#dim {
+  background-color: rgb(69, 53, 46);
+  color: blanchedalmond;
+}
+
+div[dim="selected"] {
+  border: 1dvw solid crimson !important;
+  border-top-width: 3dvw !important;
+}
+
+div[dim="selected"]:hover {
+  border-top-width: 3dvw !important;
+}
+
+/* Dark Mode */
+#dark {
+  background-color: black !important;
+  color: blanchedalmond;
+  border: 0.75dvw solid blanchedalmond;
+}
+
+div[dark="selected"] {
+  border: 1dvw solid crimson !important;
+  border-top-width: 3dvw !important;
+}
+
+div[dark="selected"]:hover {
+  border-top-width: 3dvw !important;
+}

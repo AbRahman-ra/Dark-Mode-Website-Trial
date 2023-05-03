@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Change Background Color</title>
+    <link rel="stylesheet" href="landing.css" id="variableCSS" />
+    <link rel="stylesheet" href="mainstyle.css" />
+    <link rel="stylesheet" href="buttonsInside.css" />
+  </head>
+
+  <body>
+    <div id="userPrompt">
+      <h3 id="promptHeader">Please Choose Your Favorite Navigation Mode</h3>
+      <p id="promptP">It will be saved for next time you visit our site</p>
+      <div class="modesDivPrompt">
+        <div id="lightPrompt" class="modePrompt">
+          <input type="radio" name="mode" id="lightBtnPrompt" hidden />
+          <label for="lightBtnPrompt" class="caption" id="lightCap"
+            >Light</label
+          >
+        </div>
+
+        <div id="dimPrompt" class="modePrompt">
+          <input type="radio" name="mode" id="dimBtnPrompt" hidden />
+          <label for="dimBtnPrompt" class="caption" id="dimCap">Dim</label>
+        </div>
+
+        <div id="darkPrompt" class="modePrompt">
+          <input type="radio" name="mode" id="darkBtnPrompt" checked hidden />
+          <label for="darkBtnPrompt" class="caption" id="darkCap">Dark</label>
+        </div>
+      </div>
+
+      <div id="confirmDiv">
+        <button id="confirmPrompt">Confirm Selection & Enter</button>
+        <p id="buttonSideNote">*You can change them later</p>
+      </div>
+    </div>
+
+    <div id="webpageContent">
+      <div class="modes">
+        <div id="light" class="modeOption">
+          <input type="radio" name="mode" id="lightBtn" hidden />
+          <label for="lightBtn" class="caption">Light</label>
+        </div>
+
+        <div id="dim" class="modeOption">
+          <input type="radio" name="mode" id="dimBtn" hidden />
+          <label for="dimBtn" class="caption">Dim</label>
+        </div>
+
+        <div id="dark" class="modeOption">
+          <input type="radio" name="mode" id="darkBtn" hidden />
+          <label for="darkBtn" class="caption">Dark</label>
+        </div>
+      </div>
+
+      <h1>Welcome to This Beautiful WebPage 😍</h1>
+      <h2 id="underH1">I love beauty 😍❤️❤️❤️❤️</h2>
+    </div>
+    <script src="changeMode.js"></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+body {
+  background-color: rgb(69, 53, 46);
+  color: blanchedalmond;
+}
+
+.cell {
+  border: 0.5dvw solid blanchedalmond;
+}

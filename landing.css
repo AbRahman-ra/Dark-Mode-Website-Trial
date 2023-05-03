@@ -1,0 +1,146 @@
+/* General Rules */
+body {
+  background-color: #202030;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+/* The Whole Pop-up */
+#userPrompt {
+  border-radius: 5dvw;
+  border: 1dvw solid blanchedalmond;
+  background-color: black;
+  color: blanchedalmond;
+  padding: 5%;
+  position: absolute;
+  margin-top: 45%;
+}
+
+div[light="light"] {
+  background-color: blanchedalmond !important;
+  color: black !important;
+}
+
+div[dim="dim"] {
+  background-color: rgb(69, 53, 46) !important;
+  color: blanchedalmond !important;
+}
+
+div[dark="dark"] {
+  background-color: black !important;
+  color: blanchedalmond !important;
+}
+
+/* Header & Header Paragraph */
+#promptHeader {
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 6dvw;
+  font-weight: 100;
+  margin-bottom: 2%;
+}
+
+#promptP {
+  font-size: 4dvw;
+  margin-top: 0%;
+  margin-bottom: 8%;
+  text-align: center;
+}
+
+/* Selection Modes */
+/* General Div */
+.modesDivPrompt {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modePrompt {
+  padding: 4% 8%;
+  border-radius: 1em;
+  font-size: 6dvw;
+  border-color: chocolate;
+  transition: border-color 0.5s ease;
+}
+
+.modePrompt:hover {
+  cursor: pointer;
+  border: 1dvw solid crimson !important;
+}
+
+/* Light Mode */
+#lightPrompt {
+  background-color: blanchedalmond;
+  color: black;
+}
+
+div[light="selected"] {
+  border: 1dvw solid crimson !important;
+  border-top-width: 3dvw !important;
+}
+
+div[light="selected"]:hover {
+  border-top-width: 3dvw !important;
+}
+
+/* Dim Mode */
+#dimPrompt {
+  background-color: rgb(69, 53, 46);
+  color: blanchedalmond;
+}
+
+div[dim="selected"] {
+  border: 1dvw solid crimson !important;
+  border-top-width: 3dvw !important;
+}
+
+div[dim="selected"]:hover {
+  border-top-width: 3dvw !important;
+}
+
+/* Dark Mode */
+#darkPrompt {
+  background-color: black;
+  color: blanchedalmond;
+  border: 0.75dvw solid blanchedalmond;
+}
+
+div[dark="selected"] {
+  border: 1dvw solid crimson !important;
+  border-top-width: 3dvw !important;
+}
+
+div[dark="selected"]:hover {
+  border-top-width: 3dvw !important;
+}
+
+/* Confirm Button & Side Note */
+#confirmPrompt {
+  padding: 3% 5%;
+  border-radius: 2em;
+  margin-top: 10%;
+  box-shadow: none;
+  outline: none;
+  border: none;
+  background-color: crimson;
+  color: antiquewhite;
+  font-size: 4dvw;
+  transition: background-color 0.3s ease;
+}
+
+#confirmDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#confirmPrompt:hover {
+  background-color: antiquewhite;
+  color: crimson;
+  cursor: pointer;
+  font-weight: 600;
+  border: 1vw solid crimson;
+}
+
+#buttonSideNote {
+  font-size: 3dvw;
+}
