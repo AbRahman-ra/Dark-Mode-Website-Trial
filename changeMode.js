@@ -93,17 +93,17 @@ confirmModeOnLoad.onclick = function () {
   popUp.style.display = "none";
   webpageContent.style.display = "";
   if (popUp.hasAttribute("light")) {
-    cssFile.setAttribute("href", "light.css");
+    cssFile.setAttribute("href", "./Styles/light.css");
     let lightBtnInside = document.getElementById("lightBtn");
     lightBtnInside.setAttribute("checked", "checked");
     light.setAttribute("light", "selected");
   } else if (popUp.hasAttribute("dim")) {
-    cssFile.setAttribute("href", "dim.css");
+    cssFile.setAttribute("href", "./Styles/dim.css");
     let dimBtnInside = document.getElementById("dimBtn");
     dimBtnInside.setAttribute("checked", "checked");
     dim.setAttribute("dim", "selected");
   } else {
-    cssFile.setAttribute("href", "dark.css");
+    cssFile.setAttribute("href", "./Styles/dark.css");
     let darkBtnInside = document.getElementById("darkBtn");
     darkBtnInside.setAttribute("checked", "checked");
     dark.setAttribute("dark", "selected");
@@ -122,7 +122,7 @@ let cssFile = document.querySelector("#variableCSS");
 
 // Light Mode - After Load
 lightDiv.addEventListener("click", function () {
-  cssFile.setAttribute("href", "light.css");
+  cssFile.setAttribute("href", "./Styles/light.css");
   this.setAttribute("light", "selected");
   dimBtn.removeAttribute("checked");
   darkBtn.removeAttribute("checked");
@@ -133,7 +133,7 @@ lightDiv.addEventListener("click", function () {
 
 // Dim Mode - After Load
 dimDiv.addEventListener("click", function () {
-  cssFile.setAttribute("href", "dim.css");
+  cssFile.setAttribute("href", "./Styles/dim.css");
   this.setAttribute("dim", "selected");
   lightBtn.removeAttribute("checked");
   darkBtn.removeAttribute("checked");
@@ -144,7 +144,7 @@ dimDiv.addEventListener("click", function () {
 
 // Dark Mode - After Load
 darkDiv.addEventListener("click", function () {
-  cssFile.setAttribute("href", "dark.css");
+  cssFile.setAttribute("href", "./Styles/dark.css");
   this.setAttribute("dark", "selected");
   lightBtn.removeAttribute("checked");
   dimBtn.removeAttribute("checked");
