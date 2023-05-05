@@ -1,8 +1,9 @@
 body {
   background-color: black;
-  color: blanchedalmond;
+  color: bisque;
 }
 
-.cell {
-  border: 0.5dvw solid blanchedalmond;
+aside {
+  background-color: black;
+  color: bisque;
 }

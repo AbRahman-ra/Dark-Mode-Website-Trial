@@ -1,8 +1,9 @@
 body {
-  background-color: rgb(69, 53, 46);
-  color: blanchedalmond;
+  background-color: rgb(45, 40, 40);
+  color: bisque;
 }
 
-.cell {
-  border: 0.5dvw solid blanchedalmond;
+aside {
+  background-color: rgb(45, 40, 40);
+  color: bisque;
 }

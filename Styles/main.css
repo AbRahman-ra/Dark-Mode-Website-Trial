@@ -1,0 +1,50 @@
+/*General Rules*/
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#webpage {
+  z-index: 1;
+}
+
+/*Modes & Clear Preferences*/
+nav {
+  width: 80%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 30px;
+}
+
+ul {
+  width: 100%;
+  display: flex;
+  list-style-type: none;
+  justify-content: space-between;
+  padding: 0px;
+  font-size: 14px;
+}
+
+.wbOptionSec {
+  padding: 10px 20px 10px 0px;
+  border-radius: 1em;
+}
+
+.wbSelected,
+.wbSelected:hover {
+  border: 3px solid crimson;
+  border-left-width: 10px;
+}
+
+#wbNavBtn {
+  margin-left: auto;
+}
+
+#wbClrPrfBtn {
+  background-color: none;
+  border: 2px solid crimson;
+  color: crimson;
+  border-radius: 1em;
+  font-weight: bold;
+}

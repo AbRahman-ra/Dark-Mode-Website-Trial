@@ -1,7 +1,9 @@
 body {
-  background-color: blanchedalmond;
+  background-color: bisque;
+  color: black;
 }
 
-.cell {
-  border: 0.5dvw solid black;
+aside {
+  background-color: bisque;
+  border: 2px solid black;
 }

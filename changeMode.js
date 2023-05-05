@@ -1,154 +1,231 @@
-// Fill the page with some webpageContent
-let cellsContent = [];
-let numOfCells = 10;
-let pageSubheaderH2 = document.querySelector("#underH1");
-let names = [
-  "The Intouchables",
-  "Sorry for Disturbance",
-  "Like Today",
-  "Buskas",
-  "Orage",
-  "L'homme a la Rose",
-  "Rashed",
-  "My Girlfriend",
-  "Sleeping",
-  "Money",
-];
+// This Webpage is divided into 1: Pop-up & 2: Content
 
-let cellsDiv = document.createElement("div");
-cellsDiv.setAttribute("class", "cellsDiv");
+// [1] POP-UP
+// [1][a] Pop-up SetUp
+// [1][a][i] Initialization
+let popUp = document.querySelector("#popUp");
+let webpage = document.querySelector("#webpage");
+let puModes = document.querySelectorAll(".puModeOption");
+let wbModes = document.querySelectorAll(".wbOptionSec");
+console.log;
 
-for (let i = 0; i < numOfCells; i++) {
-  cell = document.createElement("div");
-  cell.setAttribute("id", `${names[i]}`);
-  cell.setAttribute("class", "cell");
+// [1][a][ii] Default Mode Initialization (Dark Mode)
+// Modes shown in pop-up
+let defaultMode = puModes[2]; //0 = light, 1 = dim, 2 = dark
+defaultMode.classList.add("defaultMode");
+defaultMode.classList.add("selected");
 
-  let cellHeader = document.createElement("h3");
-  cellHeader.innerHTML = names[i];
+let selectedMode = document
+  .querySelector(".selected")
+  .querySelector("label").textContent;
+let defaultModeBtn = defaultMode.querySelector(`input[type="radio"]`);
+console.log(defaultModeBtn);
+console.log(selectedMode);
+defaultModeBtn.checked = true;
 
-  let cellDescription = document.createElement("p");
-  cellDescription.innerHTML = `Any description for ${names[i]}`;
+let cssFile = document.querySelector("#theme");
 
-  cellHeader.after(cellDescription);
-  cell.append(cellHeader);
-  cell.append(cellDescription);
-  cellsDiv.append(cell);
-  pageSubheaderH2.after(cellsDiv);
-  cellsContent.push(cell);
-}
+// initialization for webpage
+let wbDefaultMode;
+let wbRadioBtn;
 
-// Hide Webpage Content on load for user prompt
-let webpageContent = document.querySelector("#webpageContent");
-window.onload = function () {
-  webpageContent.style.display = "none";
+// [1][b] Display Pop-up When Page Loads For The First Time / Preferences Are Reset & Keep The Saved Settings in The Local Storage
+window.onload = () => {
+  if (window.localStorage.length === 0) {
+    popUp.style.display = "flex";
+    webpage.style.filter = "blur(5px)";
+    wbDefaultMode = wbModes[2];
+  } else {
+    switch (window.localStorage.Mode) {
+      case "Light":
+        cssFile.href = "./Styles/light.css";
+        wbDefaultMode = wbModes[0];
+        break;
+
+      case "Dim":
+        cssFile.href = "./Styles/dim.css";
+        wbDefaultMode = wbModes[1];
+        break;
+
+      case "Dark":
+        cssFile.href = "./Styles/dark.css";
+        wbDefaultMode = wbModes[2];
+        break;
+    }
+  }
+  wbDefaultMode.classList.add("default");
+  wbDefaultMode.classList.add("selected");
+  wbRadioBtn = wbDefaultMode.querySelector(`input[type="radio"]`);
+  wbRadioBtn.checked = true;
 };
 
-// Event Triggers
-// Select Mode - Before Loading Content
-// Initialization
-let popUp = document.querySelector("#userPrompt");
-let lightDivOnLoad = document.querySelector("#lightPrompt");
-let lightBtnOnLoad = document.querySelector("#lightBtnPrompt");
-let dimDivOnLoad = document.querySelector("#dimPrompt");
-let dimBtnOnLoad = document.querySelector("#dimBtnPrompt");
-let darkDivOnLoad = document.querySelector("#darkPrompt");
-let darkBtnOnLoad = document.querySelector("#darkBtnPrompt");
-let confirmModeOnLoad = document.querySelector("#confirmPrompt");
+// [1][c] Change The Mode Upon Pop-up Modes' Buttons Click
+puModes.forEach((el) => {
+  let puRadioBtn = el.querySelector(`input[type="radio"]`);
+  let puSelectedModeOutput = document.querySelector("#puSelectedMode");
+  puRadioBtn.hidden = true; // Hide & Unhide to check that event works
+  el.classList.add("hoverable");
+  let currentWbMode = document.querySelector(`#wb${selectedMode}Sec`);
+  wbRadioBtn = document.querySelector(`#wb${selectedMode}Btn`);
 
-// Light Mode - Before Load
-lightDivOnLoad.addEventListener("click", function () {
-  popUp.setAttribute("light", "light");
-  popUp.removeAttribute("dim");
-  popUp.removeAttribute("dark");
-  this.setAttribute("light", "selected");
-  lightBtnOnLoad.setAttribute("checked", "checked");
-  dimDivOnLoad.removeAttribute("dim");
-  darkDivOnLoad.removeAttribute("dark");
+  wbModes.forEach((el) => {
+    el.classList.remove("selected");
+    el.classList.add("hoverable");
+  });
+
+  // On Mode Button Click
+  el.addEventListener("click", () => {
+    // [1][c][i] Assign "selected" class only to the clicked button
+    puModes.forEach((el) => {
+      el.classList.add("hoverable");
+      el.classList.remove("selected");
+    });
+    el.classList.add("selected");
+    el.classList.remove("hoverable");
+
+    // [1][c][ii] Update the selected mode
+    selectedMode = document
+      .querySelector(".selected")
+      .querySelector("label").textContent;
+    window.localStorage.Mode = selectedMode;
+
+    // add selected classes for webpage
+    wbModes.forEach((el) => {
+      el.classList.remove("selected");
+      el.classList.add("hoverable");
+    });
+    currentWbMode = document.querySelector(`#wb${selectedMode}Sec`);
+    currentWbMode.classList.add("selected");
+    currentWbMode.classList.remove("hoverable");
+
+    // [1][c][iii] Check the radio button in pop-up
+    puRadioBtn.checked = true;
+
+    // [1][c][iii] Check the selected mode button in webpage
+    wbRadioBtn = document.querySelector(`#wb${selectedMode}Btn`);
+    wbRadioBtn.checked = true;
+
+    // [1][c][iv] Display selected mode message for the user
+    puSelectedModeOutput.textContent = `Selected Mode: ${selectedMode}`;
+
+    // [1][c][v] Link the proper CSS file
+    switch (selectedMode) {
+      case "Light":
+        cssFile.href = "./Styles/light.css";
+        break;
+
+      case "Dim":
+        cssFile.href = "./Styles/dim.css";
+        break;
+
+      case "Dark":
+        cssFile.href = "./Styles/dark.css";
+        break;
+    }
+  });
 });
 
-// Dim Mode - Before Load
-dimDivOnLoad.addEventListener("click", function () {
-  popUp.removeAttribute("light");
-  popUp.setAttribute("dim", "dim");
-  popUp.removeAttribute("dark");
-  this.setAttribute("dim", "selected");
-  dimBtnOnLoad.setAttribute("checked", "checked");
-  lightDivOnLoad.removeAttribute("light");
-  darkDivOnLoad.removeAttribute("dark");
+// [1][d] "Save My Selection" & "Confirm Selection" Buttons Configuration
+// [1][d][i] Initialization
+let saveNextTime = document.querySelector(`input[type=checkbox]`);
+let isSaveNxtTimeChecked = saveNextTime.checked;
+console.log(isSaveNxtTimeChecked);
+
+// [1][d][ii] Update the check status on click
+saveNextTime.addEventListener("click", () => {
+  isSaveNxtTimeChecked = saveNextTime.checked;
+  console.log(isSaveNxtTimeChecked);
 });
 
-// Dark Mode - Before Load
-darkDivOnLoad.addEventListener("click", function () {
-  popUp.removeAttribute("light");
-  popUp.removeAttribute("dim");
-  popUp.setAttribute("dark", "dark");
-  this.setAttribute("dark", "selected");
-  darkBtnOnLoad.setAttribute("checked", "checked");
-  lightDivOnLoad.removeAttribute("light");
-  dimDivOnLoad.removeAttribute("dim");
-});
-
-// Confirming The Selected Mode & Entering The Website
-confirmModeOnLoad.onclick = function () {
+// [1][d][iii] Hide Pop-up & save selected mode in local storage if the selection is confirmed & the button checked
+let puConfirmSelectionBtn = document.querySelector("button");
+puConfirmSelectionBtn.onclick = () => {
   popUp.style.display = "none";
-  webpageContent.style.display = "";
-  if (popUp.hasAttribute("light")) {
-    cssFile.setAttribute("href", "./Styles/light.css");
-    let lightBtnInside = document.getElementById("lightBtn");
-    lightBtnInside.setAttribute("checked", "checked");
-    light.setAttribute("light", "selected");
-  } else if (popUp.hasAttribute("dim")) {
-    cssFile.setAttribute("href", "./Styles/dim.css");
-    let dimBtnInside = document.getElementById("dimBtn");
-    dimBtnInside.setAttribute("checked", "checked");
-    dim.setAttribute("dim", "selected");
+  webpage.style.filter = "blur(0px)";
+  if (isSaveNxtTimeChecked) {
+    window.localStorage.setItem("Mode", selectedMode);
+    selectedMode = window.localStorage.Mode;
   } else {
-    cssFile.setAttribute("href", "./Styles/dark.css");
-    let darkBtnInside = document.getElementById("darkBtn");
-    darkBtnInside.setAttribute("checked", "checked");
-    dark.setAttribute("dark", "selected");
+    window.localStorage.removeItem("Mode");
   }
 };
+// Update the default selected mode to the one stored
 
-// Change Mode after Loading webpageContent
-// Initialization
-let lightDiv = document.querySelector("#light");
-let lightBtn = document.querySelector("#lightBtn");
-let dimDiv = document.querySelector("#dim");
-let dimBtn = document.querySelector("#dimBtn");
-let darkDiv = document.querySelector("#dark");
-let darkBtn = document.querySelector("#darkBtn");
-let cssFile = document.querySelector("#variableCSS");
+// Update the checked button on webpage
 
-// Light Mode - After Load
-lightDiv.addEventListener("click", function () {
-  cssFile.setAttribute("href", "./Styles/light.css");
-  this.setAttribute("light", "selected");
-  dimBtn.removeAttribute("checked");
-  darkBtn.removeAttribute("checked");
-  lightBtn.setAttribute("checked", "checked");
-  dimDiv.removeAttribute("dim");
-  darkDiv.removeAttribute("dark");
-});
+// Add "selected" class
 
-// Dim Mode - After Load
-dimDiv.addEventListener("click", function () {
-  cssFile.setAttribute("href", "./Styles/dim.css");
-  this.setAttribute("dim", "selected");
-  lightBtn.removeAttribute("checked");
-  darkBtn.removeAttribute("checked");
-  dimBtn.setAttribute("checked", "checked");
-  lightDiv.removeAttribute("light");
-  darkDiv.removeAttribute("dark");
-});
+// [2] WEBPAGE CONTENT
+// [2][a] Modes & Clear Preferences
 
-// Dark Mode - After Load
-darkDiv.addEventListener("click", function () {
-  cssFile.setAttribute("href", "./Styles/dark.css");
-  this.setAttribute("dark", "selected");
-  lightBtn.removeAttribute("checked");
-  dimBtn.removeAttribute("checked");
-  darkBtn.setAttribute("checked", "checked");
-  light.removeAttribute("light");
-  dim.removeAttribute("dim");
+//clear preferences
+let clearPreferencesDiv = document.querySelector("#wbNavBtn");
+let dialogBox = document.querySelector("#rUSure");
+let yesDelBtn = document.querySelector("#yesDelBtn");
+let noCancelBtn = document.querySelector("#noCancelBtn");
+console.log(clearPreferencesDiv);
+console.log(dialogBox);
+
+clearPreferencesDiv.onclick = () => {
+  dialogBox.style.display = "flex";
+};
+
+yesDelBtn.onclick = () => {
+  window.localStorage.clear();
+  dialogBox.style.display = "none";
+  clearPreferencesDiv.querySelector("button").textContent = "Cleared!";
+  setTimeout(() => {
+    clearPreferencesDiv.querySelector("button").textContent =
+      "Clear Preferences";
+  }, 3000);
+};
+
+noCancelBtn.onclick = () => {
+  dialogBox.style.display = "none";
+};
+
+// Buttons on webpage
+wbModes.forEach((el) => {
+  el.classList.remove("selected");
+  el.classList.add("hoverable");
+
+  wbRadioBtn = el.querySelector(`input[type="radio"]`);
+  wbRadioBtn.hidden = false; // Hide & Unhide to check that event works
+  el.classList.add("hoverable");
+
+  el.addEventListener("click", () => {
+    // add selected class only to the selected
+    wbModes.forEach((el) => {
+      el.classList.add("hoverable");
+      el.classList.remove("selected");
+    });
+    el.classList.add("selected");
+    el.classList.remove("hoverable");
+
+    // update selected mode in local storage
+    selectedMode = document
+      .querySelector(".wbModeOption")
+      .querySelector(".selected")
+      .querySelector("label").textContent;
+    window.localStorage.Mode = selectedMode;
+
+    // [1][c][iii] Check the selected mode button in webpage
+    wbRadioBtn = document.querySelector(`#wb${selectedMode}Btn`);
+    wbRadioBtn.checked = true;
+
+    // Select proper CSS File
+    switch (selectedMode) {
+      case "Light":
+        cssFile.href = "./Styles/light.css";
+        break;
+
+      case "Dim":
+        cssFile.href = "./Styles/dim.css";
+        break;
+
+      case "Dark":
+        cssFile.href = "./Styles/dark.css";
+        break;
+    }
+  });
 });
