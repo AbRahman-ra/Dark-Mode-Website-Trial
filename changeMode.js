@@ -231,3 +231,8 @@ wbModes.forEach((el) => {
     }
   });
 });
+
+// Disable the "Clear preferences" button if the local storage is empty
+if (window.localStorage.Mode === "") {
+  clearPreferencesDiv.querySelector("button").disabled = true;
+}
