@@ -172,6 +172,7 @@ clearPreferencesDiv.onclick = () => {
 yesDelBtn.onclick = () => {
   window.localStorage.clear();
   dialogBox.style.display = "none";
+
   // [3.1.2.1] Display "Cleared!" as a button text for 3 seconds
   clearPreferencesDiv.querySelector("button").textContent = "Cleared!";
   setTimeout(() => {
@@ -231,8 +232,3 @@ wbModes.forEach((el) => {
     }
   });
 });
-
-// Disable the "Clear preferences" button if the local storage is empty
-if (window.localStorage.length === 0) {
-  clearPreferencesDiv.querySelector("button").disabled = true;
-}
