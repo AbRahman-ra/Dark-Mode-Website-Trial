@@ -6,6 +6,23 @@ So, Basically I tried the idea of making a button that changes the website mode 
 
 ---
 
+## Functionality
+
+- When you load the page for the first time, a pop up will appear. Asking you about the navigation mode you prefer (default set into dark for user friendliness)
+- There is a checkbox "Save my selection for next time" (default checked), if checked, the pop up will not appear next time you visit the website and instead the chosen mode will be applied directly
+  - If unchecked, the preferences won't be saved and the pop up will show next time you reload the page
+- You can change the mode later as well as clear your preferences from the buttons in the webpage
+- If you cleared your preferences. the word "Cleared!" will appear on the button for 3 seconds
+
+---
+
+## Limitations to Be Improved
+
+- The webpage content is below the pop up, not behind it
+- The webpage has no content yet
+
+---
+
 ### **Abbreviations**
 
 - Pop-up related sections is referred to as **"pu"** in HTML IDs & JS variables
