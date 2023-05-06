@@ -233,6 +233,6 @@ wbModes.forEach((el) => {
 });
 
 // Disable the "Clear preferences" button if the local storage is empty
-if (window.localStorage.Mode === "") {
+if (window.localStorage.length === 0) {
   clearPreferencesDiv.querySelector("button").disabled = true;
 }
