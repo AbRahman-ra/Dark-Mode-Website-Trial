@@ -4,8 +4,21 @@
 
 So, Basically I tried the idea of making a button that changes the website mode from light to dark. There is a "dim mode" which is a state between completely light and completely dark modes.
 
-## I know the page responsiveness cry in the corner. I will learn CSS later
+### Abbreviations
 
-My main concern is to apply my understanding of JS
+- Pop-up related sections will be referred to as "pu" in HTML IDs & JS variables
+- Button will be referred to as "Btn"
+- Webpage related sections will be referred to as "wb" in HTML IDs & JS variables
 
-## I will update the project soon to save the settings in the local storage
+## ChangeLog
+
+### V2.0
+
+- HUGE improvements in the responsiveness
+- Much more cleaner code
+
+### V1.0
+
+- I know the page responsiveness cry in the corner. I will learn CSS later
+- My main concern is to apply my understanding of JS
+- I will update the project soon to save the settings in the local storage (Edit: Updated!)

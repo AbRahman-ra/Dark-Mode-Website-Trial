@@ -1,16 +1,11 @@
 // This Webpage is divided into 1: Pop-up & 2: Content
 
-// [1] POP-UP
-// [1][a] Pop-up SetUp
-// [1][a][i] Initialization
+// [1] PROJECT INITIALIZATION
+// [1.1] Pop-up Initialization
 let popUp = document.querySelector("#popUp");
-let webpage = document.querySelector("#webpage");
 let puModes = document.querySelectorAll(".puModeOption");
-let wbModes = document.querySelectorAll(".wbOptionSec");
-console.log;
 
-// [1][a][ii] Default Mode Initialization (Dark Mode)
-// Modes shown in pop-up
+// [1.2] Pop-up Default Mode Initialization (Dark Mode)
 let defaultMode = puModes[2]; //0 = light, 1 = dim, 2 = dark
 defaultMode.classList.add("defaultMode");
 defaultMode.classList.add("selected");
@@ -23,19 +18,25 @@ console.log(defaultModeBtn);
 console.log(selectedMode);
 defaultModeBtn.checked = true;
 
+// [1.3] CSS Theme File (Changed by Changing Mode, Applies to Whole Document)
 let cssFile = document.querySelector("#theme");
 
-// initialization for webpage
+// [1.4] Webpage Default Mode Initialization (Dark Mode)
+let wbModes = document.querySelectorAll(".wbOptionSec");
+let webpage = document.querySelector("#webpage");
 let wbDefaultMode;
 let wbRadioBtn;
 
-// [1][b] Display Pop-up When Page Loads For The First Time / Preferences Are Reset & Keep The Saved Settings in The Local Storage
+// [1.5] When The Page Loads
 window.onload = () => {
+  // [1.5.1] Display Pop-up When Page Loads For The First Time / Preferences Are Reset
   if (window.localStorage.length === 0) {
     popUp.style.display = "flex";
     webpage.style.filter = "blur(5px)";
     wbDefaultMode = wbModes[2];
-  } else {
+  }
+  // [1.5.2] Change The Default Mode to the one Saved in the Local Storage
+  else {
     switch (window.localStorage.Mode) {
       case "Light":
         cssFile.href = "./Styles/light.css";
@@ -53,13 +54,15 @@ window.onload = () => {
         break;
     }
   }
+  // [1.5.3] For Both Cases, Show The Default Mode Selected (Done By CSS)
   wbDefaultMode.classList.add("default");
   wbDefaultMode.classList.add("selected");
   wbRadioBtn = wbDefaultMode.querySelector(`input[type="radio"]`);
   wbRadioBtn.checked = true;
 };
 
-// [1][c] Change The Mode Upon Pop-up Modes' Buttons Click
+// [2] POP-UP EVENTS
+// [2.1] Change The Mode Upon Pop-up Modes' Buttons Click
 puModes.forEach((el) => {
   let puRadioBtn = el.querySelector(`input[type="radio"]`);
   let puSelectedModeOutput = document.querySelector("#puSelectedMode");
@@ -75,7 +78,7 @@ puModes.forEach((el) => {
 
   // On Mode Button Click
   el.addEventListener("click", () => {
-    // [1][c][i] Assign "selected" class only to the clicked button
+    // [2.1.1] Assign "selected" class only to the clicked button
     puModes.forEach((el) => {
       el.classList.add("hoverable");
       el.classList.remove("selected");
@@ -83,13 +86,13 @@ puModes.forEach((el) => {
     el.classList.add("selected");
     el.classList.remove("hoverable");
 
-    // [1][c][ii] Update the selected mode
+    // [2.1.2] Update the selected mode in local storage
     selectedMode = document
       .querySelector(".selected")
       .querySelector("label").textContent;
     window.localStorage.Mode = selectedMode;
 
-    // add selected classes for webpage
+    // [2.1.3] add selected classes for webpage modes
     wbModes.forEach((el) => {
       el.classList.remove("selected");
       el.classList.add("hoverable");
@@ -98,17 +101,15 @@ puModes.forEach((el) => {
     currentWbMode.classList.add("selected");
     currentWbMode.classList.remove("hoverable");
 
-    // [1][c][iii] Check the radio button in pop-up
+    // [2.1.4] Check the radio button in pop-up & webpage
     puRadioBtn.checked = true;
-
-    // [1][c][iii] Check the selected mode button in webpage
     wbRadioBtn = document.querySelector(`#wb${selectedMode}Btn`);
     wbRadioBtn.checked = true;
 
-    // [1][c][iv] Display selected mode message for the user
+    // [2.1.5] Display selected mode message for the user
     puSelectedModeOutput.textContent = `Selected Mode: ${selectedMode}`;
 
-    // [1][c][v] Link the proper CSS file
+    // [2.1.6] Link the proper CSS theme file
     switch (selectedMode) {
       case "Light":
         cssFile.href = "./Styles/light.css";
@@ -125,23 +126,27 @@ puModes.forEach((el) => {
   });
 });
 
-// [1][d] "Save My Selection" & "Confirm Selection" Buttons Configuration
-// [1][d][i] Initialization
+// [2.2] "Save My Selection" Checkbox Event
+// [2.2.0] Checkbox initialization
 let saveNextTime = document.querySelector(`input[type=checkbox]`);
 let isSaveNxtTimeChecked = saveNextTime.checked;
 console.log(isSaveNxtTimeChecked);
 
-// [1][d][ii] Update the check status on click
+// [2.2.1] Update the check status on click
 saveNextTime.addEventListener("click", () => {
   isSaveNxtTimeChecked = saveNextTime.checked;
-  console.log(isSaveNxtTimeChecked);
 });
 
-// [1][d][iii] Hide Pop-up & save selected mode in local storage if the selection is confirmed & the button checked
+// [2.3] "Confirm Selection" Button Event
+// [2.3.0] Button initialization
 let puConfirmSelectionBtn = document.querySelector("button");
+
+// [2.3.1] Hide pop-up on button click
 puConfirmSelectionBtn.onclick = () => {
   popUp.style.display = "none";
   webpage.style.filter = "blur(0px)";
+
+  // [2.3.2] Save selection to local storage only if the checkbox is checked
   if (isSaveNxtTimeChecked) {
     window.localStorage.setItem("Mode", selectedMode);
     selectedMode = window.localStorage.Mode;
@@ -149,30 +154,25 @@ puConfirmSelectionBtn.onclick = () => {
     window.localStorage.removeItem("Mode");
   }
 };
-// Update the default selected mode to the one stored
 
-// Update the checked button on webpage
-
-// Add "selected" class
-
-// [2] WEBPAGE CONTENT
-// [2][a] Modes & Clear Preferences
-
-//clear preferences
+// [3] MODES & CLEAR PREFERENCES ON THE WEBPAGE
+// [3.1] Clear Preferences Events
+// [3.1.0] Clear preferences initialization
 let clearPreferencesDiv = document.querySelector("#wbNavBtn");
 let dialogBox = document.querySelector("#rUSure");
 let yesDelBtn = document.querySelector("#yesDelBtn");
 let noCancelBtn = document.querySelector("#noCancelBtn");
-console.log(clearPreferencesDiv);
-console.log(dialogBox);
 
+// [3.1.1] Display a dialog box when the clear preferences button is clicked
 clearPreferencesDiv.onclick = () => {
   dialogBox.style.display = "flex";
 };
 
+// [3.1.2] Clear preferences initialization if user confirmed by clicking "yes delete"
 yesDelBtn.onclick = () => {
   window.localStorage.clear();
   dialogBox.style.display = "none";
+  // [3.1.2.1] Display "Cleared!" as a button text for 3 seconds
   clearPreferencesDiv.querySelector("button").textContent = "Cleared!";
   setTimeout(() => {
     clearPreferencesDiv.querySelector("button").textContent =
@@ -180,21 +180,23 @@ yesDelBtn.onclick = () => {
   }, 3000);
 };
 
+// [3.1.2] Hide the dialog box if user clicked on "no, cancel"
 noCancelBtn.onclick = () => {
   dialogBox.style.display = "none";
 };
 
-// Buttons on webpage
+// [3.2] Buttons On Webpage
+// [3.2.1] Make all buttons hoverable (for CSS)
 wbModes.forEach((el) => {
   el.classList.remove("selected");
   el.classList.add("hoverable");
 
   wbRadioBtn = el.querySelector(`input[type="radio"]`);
   wbRadioBtn.hidden = false; // Hide & Unhide to check that event works
-  el.classList.add("hoverable");
 
+  // [3.2.2] On The Buttons Click
   el.addEventListener("click", () => {
-    // add selected class only to the selected
+    // [3.2.2.1] Add selected class only to the clicked mode
     wbModes.forEach((el) => {
       el.classList.add("hoverable");
       el.classList.remove("selected");
@@ -202,18 +204,18 @@ wbModes.forEach((el) => {
     el.classList.add("selected");
     el.classList.remove("hoverable");
 
-    // update selected mode in local storage
+    // [3.2.2.2] Update selected mode in local storage (if the pop-up checkbox is initially checked)
     selectedMode = document
       .querySelector(".wbModeOption")
       .querySelector(".selected")
       .querySelector("label").textContent;
     window.localStorage.Mode = selectedMode;
 
-    // [1][c][iii] Check the selected mode button in webpage
+    // [3.2.2.3] Check the selected mode button in webpage
     wbRadioBtn = document.querySelector(`#wb${selectedMode}Btn`);
     wbRadioBtn.checked = true;
 
-    // Select proper CSS File
+    // [3.2.2.4] Select proper CSS File
     switch (selectedMode) {
       case "Light":
         cssFile.href = "./Styles/light.css";
