@@ -1,6 +1,6 @@
 # Dark-Mode-Website-Trial
 
-## [Live Page Link] [(https://Abrahman-ra.github.io/Dark-Mode-Website-Trial)]
+## [Live Page Link](https://Abrahman-ra.github.io/Dark-Mode-Website-Trial)
 
 So, Basically I tried the idea of making a button that changes the website mode from light to dark. There is a "dim mode" which is a state between completely light and completely dark modes.
 
@@ -14,7 +14,7 @@ So, Basically I tried the idea of making a button that changes the website mode 
 
 ### V2.0 (5 May 2023)
 
-- HUGE improvements in the responsiveness
+- **_HUGE_** improvements in the responsiveness
 - Much more cleaner code
 
 ### V1.0 (3 May 2023)
