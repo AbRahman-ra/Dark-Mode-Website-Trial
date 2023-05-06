@@ -12,12 +12,12 @@ So, Basically I tried the idea of making a button that changes the website mode 
 
 ## ChangeLog
 
-### V2.0
+### V2.0 (5 May 2023)
 
 - HUGE improvements in the responsiveness
 - Much more cleaner code
 
-### V1.0
+### V1.0 (3 May 2023)
 
 - I know the page responsiveness cry in the corner. I will learn CSS later
 - My main concern is to apply my understanding of JS
