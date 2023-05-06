@@ -8,9 +8,9 @@ So, Basically I tried the idea of making a button that changes the website mode 
 
 ### **Abbreviations**
 
-- Pop-up related sections is referred to as "pu" in HTML IDs & JS variables
-- Button is referred to as "Btn"
-- Webpage related sections is referred to as "wb" in HTML IDs & JS variables
+- Pop-up related sections is referred to as **"pu"** in HTML IDs & JS variables
+- Button is referred to as **"Btn"**
+- Webpage related sections is referred to as **"wb"** in HTML IDs & JS variables
 
 ---
 
